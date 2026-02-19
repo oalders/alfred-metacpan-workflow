@@ -6,7 +6,7 @@ dist/$(WORKFLOW): $(CMD)
 	zip -jv $@ $(CMD) icon.png info.plist
 
 $(CMD): *.go
-	cd cmd/workflow; go build -v
+	cd cmd/workflow; go build -v -ldflags "-X main.version=$(VERSION)"
 
 .PHONY: clean
 clean:
