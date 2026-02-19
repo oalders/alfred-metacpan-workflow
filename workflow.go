@@ -1,3 +1,4 @@
+// Package wf provides Alfred workflow functionality for searching MetaCPAN modules.
 package wf
 
 import (
@@ -24,19 +25,20 @@ type ModuleXML struct {
 // SearchModule returns search distribution by query(q) and returns results as XML.
 func SearchModule(q string) string {
 	suggestions, err := metacpan.SearchAutocompleteSuggest(q)
-
 	if err != nil {
 		return errorToXML(err)
 	}
 
 	xmlType := ModulesXML{
-		Item: []ModuleXML{},
+		XMLName: xml.Name{},
+		Item:    []ModuleXML{},
 	}
 
 	for _, suggestion := range suggestions {
 		xmlType.Item = append(xmlType.Item, ModuleXML{
-			Arg:   suggestion.Name,
-			Title: suggestion.Name,
+			XMLName: xml.Name{},
+			Arg:     suggestion.Name,
+			Title:   suggestion.Name,
 			Subtitle: fmt.Sprintf(
 				"%s/%s (%s)",
 				suggestion.Author,
@@ -47,7 +49,6 @@ func SearchModule(q string) string {
 	}
 
 	xmlBytes, err := xml.Marshal(xmlType)
-
 	if err != nil {
 		return errorToXML(err)
 	}
@@ -56,7 +57,7 @@ func SearchModule(q string) string {
 }
 
 // errorToXML convert error to XML.
-func errorToXML(err error) string {
+func errorToXML(_ error) string {
 	return xml.Header + `
 <items>
   <item arg="">
