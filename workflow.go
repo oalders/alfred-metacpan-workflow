@@ -4,9 +4,30 @@ package wf
 import (
 	"encoding/xml"
 	"fmt"
+	"net/http"
 
 	"github.com/oalders/go-metacpan"
 )
+
+type userAgentTransport struct {
+	agent string
+	wrap  http.RoundTripper
+}
+
+func (t *userAgentTransport) RoundTrip(r *http.Request) (*http.Response, error) {
+	r = r.Clone(r.Context())
+	r.Header.Set("User-Agent", t.agent)
+	return t.wrap.RoundTrip(r)
+}
+
+func init() {
+	http.DefaultClient = &http.Client{
+		Transport: &userAgentTransport{
+			agent: "libwww-perl/6.72",
+			wrap:  http.DefaultTransport,
+		},
+	}
+}
 
 // The ModulesXML defines XML struct of list of distributions.
 type ModulesXML struct {
