@@ -23,7 +23,7 @@ func (t *userAgentTransport) RoundTrip(r *http.Request) (*http.Response, error) 
 func init() {
 	http.DefaultClient = &http.Client{
 		Transport: &userAgentTransport{
-			agent: "libwww-perl/6.72",
+			agent: "libwww-perl/6.81",
 			wrap:  http.DefaultTransport,
 		},
 	}
