@@ -1,6 +1,6 @@
 module github.com/oalders/alfred-metacpan-workflow
 
-go 1.14
+go 1.24.4
 
 require (
 	github.com/codegangsta/cli v1.19.1
