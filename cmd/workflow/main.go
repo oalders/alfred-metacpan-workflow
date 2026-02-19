@@ -10,6 +10,7 @@ import (
 )
 
 var logger = log.New(os.Stderr, "DEBUG: ", log.Ltime|log.Lshortfile)
+var version = "dev"
 
 func debug(v ...interface{}) {
 	if os.Getenv("DEBUG") != "" {
@@ -26,7 +27,7 @@ func debugf(format string, v ...interface{}) {
 func main() {
 	app := cli.NewApp()
 	app.Name = "Alfred Metacpan Workflow"
-	app.Version = "0.9.0"
+	app.Version = version
 	app.Usage = ""
 	app.Author = "handlename"
 	app.Email = "nagata{at}handlena.me"
