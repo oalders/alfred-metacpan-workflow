@@ -4,10 +4,6 @@ github.com/cpuguy83/go-md2man/v2 v2.0.7/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6N
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/handlename/alfred-metacpan-workflow v0.0.0-20170606054657-93e973c8a3dd h1:YgfL0qoOyUMH3DZgcWvfwScGSq6pV2gwWNDM24QqFxk=
-github.com/handlename/alfred-metacpan-workflow v0.0.0-20170606054657-93e973c8a3dd/go.mod h1:bmAwczhZWeq4WkHC1Lp7g1zCQwctdOTZYuNsIHbYGFU=
-github.com/handlename/go-metacpan v0.0.1 h1:pll7xdz/MtsguUgv6MCa02FWhCgR9bCm7bBHjrd6UiM=
-github.com/handlename/go-metacpan v0.0.1/go.mod h1:rSM8tzgYPBUpxxXCGlEt4Ag4dhkvRuh5L2DhPvNpOXo=
 github.com/oalders/go-metacpan v0.0.0-20200317153751-437f8ebdefda h1:meUy5MfwFr7LKevP4mES7WrOLf0I4ujkzho4xtfjs0A=
 github.com/oalders/go-metacpan v0.0.0-20200317153751-437f8ebdefda/go.mod h1:clBcqLO2rGp3Ax2CoOh9zd775xwU9oy0GwxVJ9PGDwc=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
