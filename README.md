@@ -1,7 +1,6 @@
-# Alfred Metacpan Workflow
+# Alfred MetaCPAN Workflow
 
-This is a workflow for [Alfred](http://www.alfredapp.com/).
-It searches Perl modules from [MetaCPAN](https://metacpan.org/) incrementally.
+A workflow for [Alfred](http://www.alfredapp.com/) that searches Perl modules from [MetaCPAN](https://metacpan.org/) incrementally.
 
 ## Example
 
@@ -9,16 +8,22 @@ It searches Perl modules from [MetaCPAN](https://metacpan.org/) incrementally.
 
 ## Installation
 
-* Clone this repository
+1. Go to the [latest release](https://github.com/oalders/alfred-metacpan-workflow/releases/latest)
+2. Download the `.alfredworkflow` file for your Mac:
+   - `metacpan-*-darwin-arm64.alfredworkflow` — Apple Silicon (M1/M2/M3/M4)
+   - `metacpan-*-darwin-amd64.alfredworkflow` — Intel
+3. Double-click the downloaded file to install it in Alfred
+
+## Building locally
 
 ```sh
-mkdir -p dist && make && open dist/metacpan-0.0.5.alfredworkflow
+mkdir -p dist && make && open dist/metacpan-*.alfredworkflow
 ```
 
 ## Licence
 
-[MIT](https://github.com/handlename/alfred-metacpan-workflow/blob/master/LICENSE)
+[MIT](LICENSE)
 
 ## Author
 
-[handlename](https://github.com/handlename)
+[handlename](https://github.com/handlename) (original) / [oalders](https://github.com/oalders) (fork)
