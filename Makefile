@@ -7,6 +7,7 @@ dist/$(WORKFLOW): $(CMD)
 
 $(CMD): *.go
 	cd cmd/workflow; go build -v -ldflags "-X main.version=$(VERSION)"
+	codesign --sign - $(CMD)
 
 .PHONY: clean
 clean:
