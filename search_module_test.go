@@ -3,7 +3,7 @@ package wf_test
 import (
 	"testing"
 
-	"github.com/handlename/alfred-metacpan-workflow"
+	"github.com/oalders/alfred-metacpan-workflow"
 )
 
 func TestSearchModule(t *testing.T) {

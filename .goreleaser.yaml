@@ -1,0 +1,38 @@
+version: 2
+
+project_name: metacpan
+
+builds:
+  - id: workflow
+    main: ./cmd/workflow
+    binary: workflow
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+    goos:
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    hooks:
+      post:
+        - cmd: zip -j "dist/metacpan-{{ .Version }}-{{ .Os }}-{{ .Arch }}.alfredworkflow" "{{ .Path }}" icon.png info.plist
+
+# Emit the binary only — .alfredworkflow archives are built by the post hook above
+archives:
+  - formats: [binary]
+    name_template: "metacpan-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+
+release:
+  github:
+    owner: oalders
+    name: alfred-metacpan-workflow
+  extra_files:
+    - glob: "dist/*.alfredworkflow"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"

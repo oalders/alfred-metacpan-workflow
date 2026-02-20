@@ -29,3 +29,4 @@ cmd/workflow/workflow
 
 # vendoring
 vendor/
+dist/
