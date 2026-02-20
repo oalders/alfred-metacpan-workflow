@@ -2,27 +2,13 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	wf "github.com/oalders/alfred-metacpan-workflow"
 	"github.com/urfave/cli"
 )
 
-var logger = log.New(os.Stderr, "DEBUG: ", log.Ltime|log.Lshortfile)
 var version = "dev"
-
-func debug(v ...interface{}) {
-	if os.Getenv("DEBUG") != "" {
-		logger.Println(v...)
-	}
-}
-
-func debugf(format string, v ...interface{}) {
-	if os.Getenv("DEBUG") != "" {
-		logger.Printf(format, v...)
-	}
-}
 
 func main() {
 	app := cli.NewApp()

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>handlename.alfredmetacpan</string>
+	<string>oalders.alfredmetacpan</string>
 	<key>category</key>
 	<string>Internet</string>
 	<key>connections</key>
@@ -91,6 +91,6 @@
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>https://github.com/handlename/alfred-metacpan-workflow</string>
+	<string>https://github.com/oalders/alfred-metacpan-workflow</string>
 </dict>
 </plist>
