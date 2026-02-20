@@ -17,10 +17,8 @@ builds:
       post:
         - cmd: zip -j "dist/metacpan-{{ .Version }}-{{ .Os }}-{{ .Arch }}.alfredworkflow" "{{ .Path }}" icon.png info.plist
 
-# Emit the binary only — .alfredworkflow archives are built by the post hook above
-archives:
-  - formats: [binary]
-    name_template: "metacpan-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+checksum:
+  disable: true
 
 release:
   github:
