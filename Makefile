@@ -1,4 +1,4 @@
-VERSION=${shell cat VERSION}
+VERSION=$(shell git describe --tags --always --dirty)
 CMD=cmd/workflow/workflow
 WORKFLOW=metacpan-$(VERSION).alfredworkflow
 
