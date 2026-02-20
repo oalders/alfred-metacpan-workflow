@@ -2,7 +2,7 @@
 package wf
 
 import (
-	"encoding/xml"
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -29,37 +29,29 @@ func init() {
 	}
 }
 
-// The ModulesXML defines XML struct of list of distributions.
-type ModulesXML struct {
-	XMLName xml.Name    `xml:"items"`
-	Item    []ModuleXML `xml:"item"`
+type modulesJSON struct {
+	Items []moduleJSON `json:"items"`
 }
 
-// The ModuleXML defines XML struct of list of distributions.
-type ModuleXML struct {
-	XMLName  xml.Name `xml:"item"`
-	Arg      string   `xml:"arg,attr"`
-	Title    string   `xml:"title"`
-	Subtitle string   `xml:"subtitle"`
+type moduleJSON struct {
+	Title    string `json:"title"`
+	Subtitle string `json:"subtitle"`
+	Arg      string `json:"arg"`
 }
 
-// SearchModule returns search distribution by query(q) and returns results as XML.
+// SearchModule searches for a distribution by query and returns results as JSON.
 func SearchModule(q string) string {
 	suggestions, err := metacpan.SearchAutocompleteSuggest(q)
 	if err != nil {
-		return errorToXML(err)
+		return errorToJSON(err)
 	}
 
-	xmlType := ModulesXML{
-		XMLName: xml.Name{},
-		Item:    []ModuleXML{},
-	}
+	result := modulesJSON{Items: []moduleJSON{}}
 
 	for _, suggestion := range suggestions {
-		xmlType.Item = append(xmlType.Item, ModuleXML{
-			XMLName: xml.Name{},
-			Arg:     suggestion.Name,
-			Title:   suggestion.Name,
+		result.Items = append(result.Items, moduleJSON{
+			Arg:   suggestion.Name,
+			Title: suggestion.Name,
 			Subtitle: fmt.Sprintf(
 				"%s/%s (%s)",
 				suggestion.Author,
@@ -69,21 +61,25 @@ func SearchModule(q string) string {
 		})
 	}
 
-	xmlBytes, err := xml.Marshal(xmlType)
+	jsonBytes, err := json.Marshal(result)
 	if err != nil {
-		return errorToXML(err)
+		return errorToJSON(err)
 	}
 
-	return xml.Header + string(xmlBytes)
+	return string(jsonBytes)
 }
 
-// errorToXML convert error to XML.
-func errorToXML(_ error) string {
-	return xml.Header + `
-<items>
-  <item arg="">
-    <title>ERROR</title>
-    <subtitle>Something wrong</subtitle>
-  </item>
-</items>`
+// errorToJSON converts an error to an Alfred JSON response.
+func errorToJSON(err error) string {
+	result := modulesJSON{
+		Items: []moduleJSON{
+			{
+				Title:    "ERROR",
+				Subtitle: err.Error(),
+				Arg:      "",
+			},
+		},
+	}
+	jsonBytes, _ := json.Marshal(result)
+	return string(jsonBytes)
 }
